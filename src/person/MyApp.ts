@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 export interface Person {
   getName: () => string;
@@ -18,9 +18,14 @@ export class Jane implements Person {
   }
 }
 
+// IOC 미사용
+// class MyApp {
+//   private person: Person;
+//   constructor() {
+//     this.person = new Dexter();
+//   }
+// }
+// IOC 사용
 class MyApp {
-  private person: Person;
-  constructor() {
-    this.person = new Dexter();
-  }
+  constructor(@Inject('Person') private p: Person) {}
 }
