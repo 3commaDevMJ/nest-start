@@ -5,6 +5,7 @@ import { ServiceB } from './dogs/base/serviceb';
 import { ServiceA } from './dogs/base/servicea';
 import { UsersService } from './users/users.service';
 import { UsersController } from './users/users.controller';
+import { EmailService } from './email/email.service';
 
 @Module({
   imports: [CatsModule],
@@ -17,6 +18,7 @@ import { UsersController } from './users/users.controller';
       useClass: Jane,
     },
     UsersService,
+    EmailService,
   ],
 })
 export class AppModule {}
