@@ -30,8 +30,8 @@ export class UsersController {
   }
 
   // what userInfo ?
-  @Get(':id')
-  async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
-    return await this.userService.getUserInfo(userId);
-  }
+  // @Get(':id')
+  // async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
+  //   return await this.userService.getUserInfo(userId);
+  // }
 }

@@ -3,13 +3,11 @@ import { CatsModule } from './cats/cats.module';
 import { Dexter, Jane } from './person/MyApp';
 import { ServiceB } from './dogs/base/serviceb';
 import { ServiceA } from './dogs/base/servicea';
-import { UsersService } from './users/users.service';
-import { UsersController } from './users/users.controller';
-import { EmailService } from './email/email.service';
+import { UsersModule } from './users/users.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
-  imports: [CatsModule],
-  controllers: [UsersController],
+  imports: [CatsModule, UsersModule, EmailModule],
   providers: [
     ServiceB,
     ServiceA,
@@ -17,8 +15,6 @@ import { EmailService } from './email/email.service';
       provide: 'Person',
       useClass: Jane,
     },
-    UsersService,
-    EmailService,
   ],
 })
 export class AppModule {}

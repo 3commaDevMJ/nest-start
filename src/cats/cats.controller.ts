@@ -15,10 +15,19 @@ import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { ForbiddenException } from './error/forbidden.exception';
 import { Cats } from './decorators/cats.decorator';
+import { CommonService } from '../libs/CommonService';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+  constructor(
+    private readonly catsService: CatsService,
+    private readonly commonService: CommonService,
+  ) {}
+
+  @Get('/common-hello')
+  getCommonHello(): string {
+    return this.commonService.hello();
+  }
 
   @Get(':id')
   findCat(@Param() params): string {
