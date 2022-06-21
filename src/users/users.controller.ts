@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post, Query} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
@@ -9,6 +9,12 @@ import { UsersService } from './users.service';
 export class UsersController {
   // 생성자 주입
   constructor(private userService: UsersService) {}
+
+  @Get()
+  getENV(): string {
+    console.log(process.env.DATABASE_HOST);
+    return process.env.DATABASE_HOST;
+  }
 
   @Post()
   async createUser(@Body() dto: CreateUserDto): Promise<void> {
