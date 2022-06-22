@@ -4,6 +4,7 @@ import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
 import { UserInfo } from 'os';
 import { UsersService } from './users.service';
+import { ValidationPipe } from '../pipe/validation.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -36,8 +37,8 @@ export class UsersController {
   }
 
   // what userInfo ?
-  // @Get(':id')
-  // async getUserInfo(@Param('id') userId: string): Promise<UserInfo> {
-  //   return await this.userService.getUserInfo(userId);
-  // }
+  @Get(':id')
+  async getUserInfo(@Param('id', ValidationPipe) userId: string) {
+    return await this.userService.getUserInfo(userId);
+  }
 }
