@@ -1,4 +1,14 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { VerifyEmailDto } from './dto/verify-email.dto';
 import { UserLoginDto } from './dto/user-login.dto';
@@ -39,6 +49,17 @@ export class UsersController {
   // what userInfo ?
   @Get(':id')
   async getUserInfo(@Param('id', ValidationPipe) userId: string) {
+    console.log('1111');
+    if (+userId < 1) {
+      // throw new BadRequestException('id는 0보다 큰 정수여야 합니다.');
+      throw new HttpException(
+        {
+          errorMessage: 'id는 0보다 큰 정수여야 합니다',
+          foo: 'bar',
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return await this.userService.getUserInfo(userId);
   }
 }
