@@ -49,7 +49,6 @@ export class UsersController {
   // what userInfo ?
   @Get(':id')
   async getUserInfo(@Param('id', ValidationPipe) userId: string) {
-    console.log('1111');
     if (+userId < 1) {
       // throw new BadRequestException('id는 0보다 큰 정수여야 합니다.');
       throw new HttpException(
